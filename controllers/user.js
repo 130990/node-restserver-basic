@@ -55,7 +55,7 @@ const deleteUsers =  async(req, res = response) => {
     const user = await UserModel.findByIdAndUpdate(id, {state:false});
 
     res.json({
-        msg: 'test DELETE message - controller'
+        user
     });
 }
 
