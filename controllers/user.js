@@ -50,8 +50,9 @@ const putUsers = async(req, res = response) => {
         user
     });
 }
-const deleteUsers =  async(req, res = response) => {
+const deleteUsers =  async(req =request, res = response) => {
     const {id} = req.params;
+
     const user = await UserModel.findByIdAndUpdate(id, {state:false});
 
     res.json({
