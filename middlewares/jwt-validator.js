@@ -1,7 +1,7 @@
 const { response, request } = require('express');
 const jwt = require('jsonwebtoken');
 
-const userModel = require('../models/user');
+const {User} = require('../models');
 
 
 const jwtValidator = async(req = request, res = response, next) => {
@@ -15,7 +15,7 @@ const jwtValidator = async(req = request, res = response, next) => {
 
     try {
         const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
-        const userAuth = await userModel.findOne({_id: uid});
+        const userAuth = await User.findOne({_id: uid});
         
         //Verify is user exists
         if(!userAuth.state){

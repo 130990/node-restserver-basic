@@ -15,7 +15,7 @@ const getUsers = async(req = request, res = response) => {
                         .limit(Number(limit))
     ]);
 
-    res.json({
+    return res.json({
         total,
         users
     });
@@ -30,7 +30,7 @@ const postUsers = async (req, res = response) => {
 
     //save
     await user.save();
-    res.json({
+    return res.json({
         msg: 'test POST message - controller',
         user
     });
@@ -46,7 +46,7 @@ const putUsers = async(req, res = response) => {
 
     const user = await UserModel.findByIdAndUpdate(id, userData);
 
-    res.json({
+    return res.json({
         user
     });
 }
@@ -55,7 +55,7 @@ const deleteUsers =  async(req =request, res = response) => {
 
     const user = await UserModel.findByIdAndUpdate(id, {state:false});
 
-    res.json({
+    return res.json({
         user
     });
 }
