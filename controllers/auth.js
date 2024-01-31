@@ -85,7 +85,20 @@ const googleSignIn = async (req = request, res = response) =>{
     }
 
 }
+
+const validateToken = async(req=request, res=response) =>{
+    const {userAuth} = req;
+
+    //Generate JWT
+    const token = await generateJWT(userAuth.id);
+
+    return res.json({
+        userAuth,
+        token
+    });
+}
 module.exports = {
     login,
-    googleSignIn
+    googleSignIn,
+    validateToken
 }
